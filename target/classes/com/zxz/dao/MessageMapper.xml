@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zxz.dao.MessageMapper">
+    <!--查询所有用户-->
+    <select id="findAllMsg" resultType="Message">
+        select * from message;
+    </select>
+
+    <!--添加用户-->
+    <!--id="方法名" parameterType="实体类参数类型"-->
+    <insert id="addMsg" parameterType="Message">
+        insert into message (xxbt,xxnr,fbr,fbsj)values (#{xxbt},#{xxnr},#{fbr},#{fbsj});
+    </insert>
+
+    <!--更新-->
+    <update id="updateMsg" parameterType="Message">
+      update message
+      set xxnr = #{xxnr},xxbt = #{xxbt};fbr = #{fbr},fbsj = #{fbsj}}
+      where xxbh=#{xxbh};
+   </update>
+
+    <!--根据主键删除  parameterType="Integer或者INT都可"-->
+    <delete id="deleteMsg" parameterType="int">
+        <!--id=#{占位符，随便写什么}-->
+        delete from message where xxbh=#{xxbh};
+    </delete>
+
+    <!--根据主键id查询信息-->
+    <select id="findByBh" parameterType="int" resultType="Message">
+        select * from Message where xxbh=#{xxbh};
+    </select>
+
+    <!--根据标题模糊查询-->
+    <select id="findOneMsg" parameterType="String" resultType="Message">
+        select * from message where xxbt like '%' #{xxbt} '%';
+    </select>
+
+</mapper>

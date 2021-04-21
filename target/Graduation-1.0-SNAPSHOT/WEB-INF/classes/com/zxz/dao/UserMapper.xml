@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zxz.dao.UserMapper">
+    <!--查询所有用户-->
+    <select id="queryAllUser" resultType="User">
+        select * from user ;
+    </select>
+
+    <!--添加用户-->
+    <!--id="方法名" parameterType="实体类参数类型"-->
+    <insert id="addUser" parameterType="User">
+        insert into user (role,uname,tel,psd,dep,auth)values (#{role},#{uname},#{tel},#{psd},#{dep},#{auth});
+    </insert>
+
+    <!--更新用户-->
+    <update id="updateUser" parameterType="User">
+      update user
+      set role = #{role},uname = #{uname},tel = #{tel},psd = #{psd},dep = #{dep},auth = #{auth}
+      where uid=#{uid};
+   </update>
+
+    <!--根据主键id删除用户  parameterType="Integer或者INT都可"-->
+    <delete id="deleteUser" parameterType="int">
+        <!--id=#{占位符，随便写什么}-->
+        delete from user where uid=#{uid};
+    </delete>
+
+    <!--根据主键id查询用户-->
+    <select id="findByUid" parameterType="int" resultType="User">
+        select * from user where uid=#{uid};
+    </select>
+
+    <!--根据用户名查询用户-->
+    <select id="findByName" parameterType="String" resultType="User">
+        select * from user where uname like '%' #{uname} '%';
+        <!--了解方式二：select * from User where Username like '%${value}';-->
+    </select>
+    <!--获取用户总记录条数-->
+    <select id="findTotal" resultType="int">
+        select count(uid) from user;
+    </select>
+
+    <!--用电话号码和密码进行登录-->
+    <select id="findByTel" resultType="User" parameterType="String">
+        select * from user where tel = #{tel};
+    </select>
+
+    <!--增加用户名和密码进行注册 -->
+    <insert id="Regist">
+      insert into user (tel,psd)
+      values (#{tel},#{psd});
+    </insert>
+</mapper>

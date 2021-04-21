@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+    <!--设置运行日志-->
+    <settings>
+        <setting name="logImpl" value="STDOUT_LOGGING"/>
+    </settings>
+
+    <!--取别名-->
+    <typeAliases>
+        <package name="com.zxz.pojo"/>
+    </typeAliases>
+
+    <!--绑定mapper，根据自己的项目设置-->
+    <mappers>
+        <mapper resource="com/zxz/dao/UserMapper.xml"/>
+        <mapper resource="com/zxz/dao/MessageMapper.xml"/>
+    </mappers>
+
+
+</configuration>
